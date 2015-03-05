@@ -27,17 +27,14 @@
 		
 		<section id="listagem" class='fix'>
 			<ul>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz1.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz2.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz3.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz4.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz5.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz6.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz7.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz8.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz9.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz10.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz11.jpg" alt=""></a></li>
+				{% for filme in filmes %}
+					<li class="fl">
+						
+						<a href="interna/?id={{filme.id}}">
+							<img src="{{filme.foto.url}}" alt="">
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</section>
 

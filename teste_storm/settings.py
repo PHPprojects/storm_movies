@@ -100,6 +100,7 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), 'static'),)
 
 
+MEDIA_ROOT = "/media/"
 
 
 
