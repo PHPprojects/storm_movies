@@ -10,7 +10,7 @@
 <body>
 	<header id="header">
 		<div class="content">
-			<a href="index.html" class="home" title="voltar para home"></a>
+			<a href="../" class="home" title="voltar para home"></a>
 		</div>
 	</header>
 	<main id="Content" class="fix">
@@ -19,12 +19,12 @@
 		</header>
 		
 		<section id="Infos" class='fix'>
-			<figure class="fl"><img src="static/img/artista1.jpg" alt=""></figure>
+			<figure class="fl"><img src="{{ MEDIA_URL }}{{ator.foto.url}}" alt="" width="160px"></figure>
 
 			<article class="fl">
 				<p class="tit">Ator</p>
-				<h2>Scarlett Johansson</h2>
-				<p class="txt"><strong>País:</strong> Brasil</p>
+				<h2>{{ator.nome}}</h2>
+				<p class="txt"><strong>País:</strong> {{ator.pais}}</p>
 				
 			</article>
 
@@ -35,17 +35,14 @@
 				<h2>Filmes Relacionados</h2>
 			</header>
 			<ul>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz1.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz2.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz3.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz4.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz5.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz6.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz7.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz8.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz9.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz10.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz11.jpg" alt=""></a></li>
+				{% for filme in filmes %}
+					<li class="fl">
+						
+						<a href="../interna/?id={{filme.id}}">
+							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px">
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</section>
 

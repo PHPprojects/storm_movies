@@ -8,7 +8,10 @@ urlpatterns = patterns('',
 	(r'^grappelli/', include('grappelli.urls')),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^$', 'filmes.views.home', name='home'),
+    url(r'^home/^$', 'filmes.views.home', name='home'),
     url(r'^interna/$', 'filmes.views.interna', name='interna'),
+    url(r'^genero/$', 'filmes.views.genero', name='genero'),
+    url(r'^artista/$', 'filmes.views.artista', name='artista'),
    
 
     url(r'^admin/', include(admin.site.urls)),

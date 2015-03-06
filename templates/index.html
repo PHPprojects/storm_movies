@@ -10,7 +10,7 @@
 <body>
 	<header id="header">
 		<div class="content">
-			<a href="index.html" class="home" title="voltar para home"></a>
+			<a href="./" class="home" title="voltar para home"></a>
 		</div>
 	</header>
 	<main id="Content" class="fix">
@@ -31,7 +31,7 @@
 					<li class="fl">
 						
 						<a href="interna/?id={{filme.id}}">
-							<img src="{{filme.foto.url}}" alt="">
+							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px">
 						</a>
 					</li>
 				{% endfor %}

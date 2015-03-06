@@ -7,26 +7,44 @@ from filmes.models import Genero, Ator, Filme
 def home(request):
 	#import pdb; pdb.set_trace()
 	filmes = Filme.objects.all()
-	context = {'filmes': filmes}
+	context = {'filmes': filmes, 'count':1}
 	return  render(request, 'index.html', context)
 
 def interna(request):
 	context = {}
 	filme_id = request.GET.get('id')
+	#import pdb; pdb.set_trace()
+	
+	filme = Filme.objects.filter(id=filme_id)[0]
+	atores = Filme.objects.filter(id=filme_id)[0].atores.all()
+	generos = Filme.objects.filter(id=filme_id)[0].generos.all()
 
-	if filme_id :
-		#Pega um somente uma reposta
-		Filme.objects.get(id=filme_id)
+	context = {'filme':filme, 'atores':atores, 'generos':generos}
+	
+	return  render(request, 'interna.html', context)
 
-		#Pega todos os filmes - Retorma uma lista
-		filmes = Filme.objects.filter(id=filme_id) 
+def artista(request):
+	context = {}
+	artista_id = request.GET.get('id')
+	
+	ator = Ator.objects.all().filter(id=artista_id)[0]
+	filmes = Filme.objects.all().filter(atores=artista_id)[:20]
 
-		if len(filmes) != 1:
-			return  render(request, 'interna.html', context)
-		else:
-			context = {'Filme':filmes[0]}
-			return  render(request, 'interna.html', context)
-	else:
-		
-		return  render(request, 'interna.html', context)
-			
+	context = {'ator': ator, 'filmes':filmes, 'count':1}
+	return render(request, 'artista.html', context)
+
+
+def genero(request):
+	context = {}
+	#import pdb; pdb.set_trace()
+	genero_id = request.GET.get('id')
+
+	nome = Genero.objects.all().filter(id=genero_id)[0]
+
+	filmes = Filme.objects.all().filter(generos=genero_id)
+	context = {'nome': nome, 'filmes':filmes}
+	return render(request, 'genero.html', context)
+
+
+
+
