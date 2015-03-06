@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Storm Security - Teste Python - Comédia</title>
-
-	<link rel="stylesheet" href="static/css/reset.css">
-	<link rel="stylesheet" href="static/css/comum.css">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/css/comum.css">
 </head>
 <body>
 	<header id="header">
 		<div class="content">
-			<a href="index.html" class="home" title="voltar para home"></a>
+			<a href="../" class="home" title="voltar para home"></a>
 		</div>
 	</header>
 	<main id="Content" class="fix">
@@ -28,9 +28,9 @@
 		<section id="listagem" class='fix'>
 			<ul>
 				{% for filme in filmes %}
-					<li class="fl">	
-						<a href="interna/?id={{filme.id}}">
-							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px">
+					<li class="fl {% if forloop.counter|divisibleby:5 %}last{% endif %}">	
+						<a href="../interna/?id={{filme.id}}">
+							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px" height="216px">
 						</a>
 					</li>
 				{% endfor %}

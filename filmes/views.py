@@ -6,7 +6,10 @@ from filmes.models import Genero, Ator, Filme
 # Create your views here.
 def home(request):
 	#import pdb; pdb.set_trace()
-	filmes = Filme.objects.all()
+	filmes = Filme.objects.all().order_by('nome')
+	
+	#filmes = Filme.objects.all().order_by('-nome')
+
 	context = {'filmes': filmes, 'count':1}
 	return  render(request, 'index.html', context)
 

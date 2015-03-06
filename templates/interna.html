@@ -27,14 +27,19 @@
 				<p class="tit">Genero:</p>
 				<p class="txt">
 					{% for genero in generos %}
-						<a href="../genero/?id={{genero.id}}">{{genero.nome}}</a> | 
+						
+						<a href="../genero/?id={{genero.id}}">{{genero.nome}}</a>   
+
 					{% endfor %}
 				</p>	 
 
 				<p class="tit">Atores:</p>
 				<p class="txt">
 					{% for ator in atores %}
-						<a href="../artista/?id={{ator.id}}">{{ator.nome}}</a> | 
+
+						
+						<a href="../artista/?id={{ator.id}}">{{ator.nome}}</a>   
+						  
 					{% endfor %}
 				</p>
 			</article>

@@ -17,10 +17,10 @@
 		<header class="fix">
 			<h1 class="fl">Listagem de filmes</h1>
 			<form action="">
-				<select name="" id="" class="fr">
+				<select name="order" id="" class="fr">
 					<option value="">Ordenar por:</option>
-					<option value="">a - z</option>
-					<option value="">z - a</option>
+					<option value="asc">a - z</option>
+					<option value="desc">z - a</option>
 				</select>
 			</form>
 		</header>
@@ -28,10 +28,11 @@
 		<section id="listagem" class='fix'>
 			<ul>
 				{% for filme in filmes %}
-					<li class="fl">
+
+					<li class="fl {% if forloop.counter|divisibleby:5 %}last{% endif %}">
 						
 						<a href="interna/?id={{filme.id}}">
-							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px">
+							<img src="{{ MEDIA_URL }}{{filme.foto.url}}" alt="" width="168px" height="216px">
 						</a>
 					</li>
 				{% endfor %}
