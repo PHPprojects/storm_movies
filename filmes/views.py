@@ -22,8 +22,9 @@ def home(request):
 
 def interna(request):
 	context = {}
+	
 	filme_id = request.GET.get('id')
-	#import pdb; pdb.set_trace()
+	
 	
 	filme = Filme.objects.filter(id=filme_id)[0]
 	atores = filme.atores.all()
@@ -53,6 +54,16 @@ def genero(request):
 	genero_id = request.GET.get('id')
 
 	nome = Genero.objects.all().filter(id=genero_id)[0]
+
+	order = request.GET.get('ord')
+
+	if order:
+		if order == 'asc':
+			filmes = Filme.objects.all().filter(generos=genero_id).order_by('nome')
+		else:
+			filmes = Filme.objects.all().filter(generos=genero_id).order_by('-nome')
+	else:	
+		filmes = Filme.objects.all().filter(generos=genero_id).order_by('nome')
 
 	filmes = Filme.objects.all().filter(generos=genero_id)
 	context = {'nome': nome, 'filmes':filmes}

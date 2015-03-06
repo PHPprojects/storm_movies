@@ -1,0 +1,5 @@
+- Projeto Django
+
+admin path = /admin
+user: admin
+senha: mvc123
