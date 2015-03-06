@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from filmes.models import Genero, Ator, Filme
+from django.db.models import Q
 
 
 # Create your views here.
 def home(request):
 	#import pdb; pdb.set_trace()
-	filmes = Filme.objects.all().order_by('nome')
+	order = request.GET.get('ord')
 	
-	#filmes = Filme.objects.all().order_by('-nome')
+	if order:
+		if order == 'asc':
+			filmes = Filme.objects.all().order_by('nome')
+		else:
+			filmes = Filme.objects.all().order_by('-nome')
+	else:	
+		filmes = Filme.objects.all().order_by('nome')
 
 	context = {'filmes': filmes, 'count':1}
 	return  render(request, 'index.html', context)
@@ -19,10 +26,13 @@ def interna(request):
 	#import pdb; pdb.set_trace()
 	
 	filme = Filme.objects.filter(id=filme_id)[0]
-	atores = Filme.objects.filter(id=filme_id)[0].atores.all()
-	generos = Filme.objects.filter(id=filme_id)[0].generos.all()
+	atores = filme.atores.all()
+	generos = filme.generos.all()
 
-	context = {'filme':filme, 'atores':atores, 'generos':generos}
+	lista_filmes = Filme.objects.filter(Q(generos__in=generos) | Q(atores__in=atores)).distinct().exclude(id=filme_id)
+
+
+	context = {'filme':filme, 'atores':atores, 'generos':generos, 'lista_filmes':lista_filmes}
 	
 	return  render(request, 'interna.html', context)
 

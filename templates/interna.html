@@ -27,7 +27,16 @@
 				<p class="tit">Genero:</p>
 				<p class="txt">
 					{% for genero in generos %}
-						
+
+						{% if forloop.last and not forloop.first %} 
+							e 
+						{% else%} 
+
+							{% if not forloop.first %} 
+								, 
+							{% endif%} 
+
+						{% endif%}
 						<a href="../genero/?id={{genero.id}}">{{genero.nome}}</a>   
 
 					{% endfor %}
@@ -37,6 +46,15 @@
 				<p class="txt">
 					{% for ator in atores %}
 
+						{% if forloop.last and not forloop.first %} 
+							e 
+						{% else %} 
+
+							{% if not forloop.first %} 
+								, 
+							{% endif%} 
+
+						{% endif%}
 						
 						<a href="../artista/?id={{ator.id}}">{{ator.nome}}</a>   
 						  
@@ -51,16 +69,15 @@
 				<h2>Filmes Relacionados</h2>
 			</header>
 			<ul>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz2.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz3.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz4.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz5.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz6.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz7.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz8.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz9.jpg" alt=""></a></li>
-				<li class="fl"><a href="interna.html"><img src="static/img/cartaz10.jpg" alt=""></a></li>
-				<li class="fl last"><a href="interna.html"><img src="static/img/cartaz11.jpg" alt=""></a></li>
+				{% for filme in lista_filmes %}
+
+					<li class="fl {% if forloop.counter|divisibleby:5 %}last{% endif %}">
+						
+						<a href="/interna/?id={{filme.id}}">
+							<img src="{{ MEDIA_URL }}{{filme.foto_thumbnail.url}}" alt="" >
+						</a>
+					</li>
+				{% endfor %}
 			</ul>
 		</section>
 

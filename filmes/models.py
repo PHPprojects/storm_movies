@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 class Genero(models.Model):
@@ -24,6 +26,10 @@ class Filme(models.Model):
 	nome = models.CharField(max_length=200)
 	sinopse = models.TextField(max_length=400)
 	foto = models.ImageField(upload_to='img/filme')
+	foto_thumbnail = ImageSpecField(source='foto',
+                                      processors=[ResizeToFill(168, 216)],
+                                      format='JPEG',
+                                      options={'quality': 60})
 	atores = models.ManyToManyField(Ator)
 	generos = models.ManyToManyField(Genero)
 
