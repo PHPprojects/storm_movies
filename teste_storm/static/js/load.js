@@ -5,10 +5,11 @@ $(document).ready(function() {
  	});
 
  	$("#order_genero").change(function(){
- 		// alert($(this).val());
- 		alert($(location).attr('href')); 
- 		//valor = $(this).val();
- 		//window.location.replace("/?ord="+valor);
+ 		valor = $(this).val();
+ 		txt = $(location).attr('href');
+ 		link = txt.substring(0); 
+ 		//window.location.replace(link+"&ord="+valor);
+
  	});
    
  
